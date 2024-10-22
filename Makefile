@@ -1,27 +1,30 @@
 Library = push_swap
 
-CFILES = $(wildcard *.c src/*.c)
+CFILES = $(wildcard *.c src/*.c commands/*.c)
 OFILES = $(CFILES:.c=.o)
 
 Compiler = gcc
-Flags = -Wall -Wextra -Werror
+Flags =  -Wall -Wextra -Werror
 
-NAME = $(Library)
+OUTN = $(Library)
+NAME = $(OUTN)
 
 all: $(NAME)
 
 $(NAME): $(OFILES)
+	$(Compiler) $(Flags) -o $(OUTN) $(OFILES)
+
+%.o: %.c
 	$(Compiler) $(Flags) -c $< -o $@ -I./
 
 dev: fclean $(OFILES) $(NAME)
 
 clean:
-		rm -rf $(OFILES)
+	rm -rf $(OFILES)
 
-fclean:
-		rm -rf $(NAME)
+fclean: clean
+	rm -rf $(NAME)
 
 re: fclean all
 
 .PHONY: all clean fclean re
-
