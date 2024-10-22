@@ -3,7 +3,7 @@
 int error_syntax(char *str_n)
 {
 	if (!(*str_n == '+' || *str_n == '-' || (*str_n >= '0' && *str_n <= '9')))
-		retrun(1);
+		return (1);
 	if ((*str_n == '+' || *str_n == '-') && !(str_n[1] >= '0' && str_n[1] <= '9'))
 		return (1);
 	while (*++str_n)
@@ -11,13 +11,13 @@ int error_syntax(char *str_n)
 		if (!(*str_n >= '0' && *str_n <= '9'))
 			return (1);
 	}
-	retrun(0);
+	return (0);
 }
 
 int error_duplicate(t_stack_node *a, int n)
 {
 	if (!a)
-		retrun(0);
+		return (0);
 	while (a)
 	{
 		if (a->nbr == n)
