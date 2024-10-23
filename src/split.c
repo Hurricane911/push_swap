@@ -53,7 +53,7 @@ char **split(char *s, char c)
 	int i;
 
 	i = 0;
-	word_count = count_words(s, c);
+	words_count = count_words(s, c);
 	if (!words_count)
 		exit(1);
 	result_array = malloc(sizeof(char *) * (size_t)(words_count + 2));

@@ -26,7 +26,7 @@ static void set_target_b(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void init_node_b(t_stack_node *a, t_stack_node *b)
+void init_nodes_b(t_stack_node *a, t_stack_node *b)
 {
 	current_index(a);
 	current_index(b);

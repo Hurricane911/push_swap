@@ -92,7 +92,7 @@ void set_cheapest(t_stack_node *stack)
 	cheapest_node->cheapest = true;
 }
 
-void init_node_a(t_stack_node *a, t_stack_node *b)
+void init_nodes_a(t_stack_node *a, t_stack_node *b)
 {
 	current_index(a);
 	current_index(b);
