@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:51:13 by joyim             #+#    #+#             */
-/*   Updated: 2024/09/27 10:57:29 by joyim            ###   ########.fr       */
+/*   Updated: 2024/10/24 11:27:51 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdarg.h>
+# include "./printf/ft_printf.h"
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
