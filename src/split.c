@@ -1,5 +1,5 @@
 #include "../push_swap.h"
-
+#include <stdio.h>
 static int count_words(char *s, char c)
 {
 	int count;
