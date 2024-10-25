@@ -5,8 +5,8 @@
 #include <limits.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "../libft/libft.h"
-#include "../libft/printf/ft_printf.h"
+#include "libft/libft.h"
+#include "libft/printf/ft_printf.h"
 
 typedef struct s_stack_node // A container of data enclosed in {} braces. `s_` for struct
 {
