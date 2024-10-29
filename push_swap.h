@@ -28,7 +28,7 @@ void free_errors(t_stack_node **a);
 
 //***Stack initiation
 void init_stack_a(t_stack_node **a, char **argv); // Initiate stack `a` before processing
-char **split(char *s, char c);					  // To handle input of numbers as a string argument, e.g. enclosed in " "
+char **split(char const *s, char c);			  // To handle input of numbers as a string argument, e.g. enclosed in " "
 
 //***Nodes initiation
 void init_nodes_a(t_stack_node *a, t_stack_node *b);		   // To prep all nodes for pushing `a` to `b`

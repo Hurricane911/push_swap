@@ -1,76 +1,67 @@
 #include "../push_swap.h"
-#include <stdio.h>
-static int count_words(char *s, char c)
-{
-	int count;
-	bool inside_word;
 
-	count = 0;
+static char *malloc_substr(char const *s, int start, int len);
+static int subs_len(char const *s, char c);
+char **split(char const *s, char c);
+
+static int subs_len(char const *s, char c)
+{
+	int i;
+	int next;
+
+	i = 0;
+	next = 0;
 	while (*s)
 	{
-		inside_word = false;
-		while (*s == c)
-			++s;
-		while (*s != c && *s)
+		if (*s != c && next == 0)
 		{
-			if (!inside_word)
-			{
-				++count;
-				inside_word = true;
-			}
-			++s;
+			next = 1;
+			i++;
 		}
+		else if (*s == c)
+			next = 0;
+		s++;
 	}
-	return (count);
+	return (i);
 }
 
-static char *get_next_word(char *s, char c)
+char **split(char const *s, char c)
 {
-	static int cursor = 0;
-	char *next_word;
-	int len;
-	int i;
+	size_t i;
+	size_t j;
+	int n;
+	char **array;
 
-	len = 0;
-	i = 0;
-	while (s[cursor] == c)
-		++cursor;
-	while ((s[cursor] != c) && s[cursor + len])
-		++len;
-	next_word = malloc((size_t)len * sizeof(char) + 1);
-	if (!next_word)
+	array = malloc(sizeof(char *) * (subs_len(s, c) + 1));
+	if (!array)
 		return (NULL);
-	while ((s[cursor] != c) && s[cursor])
-		next_word[i++] = s[cursor++];
-	next_word[i] = '\0';
-	return (next_word);
-}
-
-char **split(char *s, char c)
-{
-	int words_count;
-	char **result_array;
-	int i;
-
 	i = 0;
-	words_count = count_words(s, c);
-	if (!words_count)
-		exit(1);
-	result_array = malloc(sizeof(char *) * (size_t)(words_count + 2));
-	if (!result_array)
-		return (NULL);
-	while (words_count-- >= 0)
+	j = 0;
+	n = -1;
+	while (i <= ft_strlen(s))
 	{
-		if (i == 0)
+		if (s[i] != c && n < 0)
+			n = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && n >= 0)
 		{
-			result_array[i] = malloc(sizeof(char));
-			if (!result_array[i])
-				return (NULL);
-			result_array[i++][0] = '\0';
-			continue;
+			array[j++] = malloc_substr(s, n, i);
+			n = -1;
 		}
-		result_array[i++] = get_next_word(s, c);
+		i++;
 	}
-	result_array[i] = NULL;
-	return (result_array);
+	array[j] = NULL;
+	return (array);
+}
+
+static char *malloc_substr(char const *s, int start, int len)
+{
+	char *substr;
+	int i;
+
+	i = 0;
+	substr = malloc((len - start + 1) * sizeof(char));
+	while (start < len)
+		substr[i++] = s[start++];
+	substr[i] = '\0';
+	return (substr);
 }
