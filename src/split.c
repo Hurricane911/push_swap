@@ -60,6 +60,8 @@ static char *malloc_substr(char const *s, int start, int len)
 
 	i = 0;
 	substr = malloc((len - start + 1) * sizeof(char));
+	if (!substr)
+		return (NULL);
 	while (start < len)
 		substr[i++] = s[start++];
 	substr[i] = '\0';
