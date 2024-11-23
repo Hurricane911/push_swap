@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 00:42:29 by joyim             #+#    #+#             */
+/*   Updated: 2024/11/23 00:42:29 by joyim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-static void rotate(t_stack_node **stack)
+static void	rotate(t_stack_node **stack)
 {
-	t_stack_node *last_node;
+	t_stack_node	*last_node;
 
 	if (!*stack || !(*stack)->next)
-		return;
+		return ;
 	last_node = find_last(*stack);
-
 	last_node->next = *stack;
 	*stack = (*stack)->next;
 	(*stack)->prev = NULL;
@@ -15,21 +26,21 @@ static void rotate(t_stack_node **stack)
 	last_node->next->next = NULL;
 }
 
-void ra(t_stack_node **a, bool print)
+void	ra(t_stack_node **a, bool print)
 {
 	rotate(a);
 	if (!print)
 		ft_printf("ra\n");
 }
 
-void rb(t_stack_node **b, bool print)
+void	rb(t_stack_node **b, bool print)
 {
 	rotate(b);
 	if (!print)
 		ft_printf("rb\n");
 }
 
-void rr(t_stack_node **a, t_stack_node **b, bool print)
+void	rr(t_stack_node **a, t_stack_node **b, bool print)
 {
 	rotate(a);
 	rotate(b);

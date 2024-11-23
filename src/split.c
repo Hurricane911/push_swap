@@ -1,13 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/22 23:05:51 by joyim             #+#    #+#             */
+/*   Updated: 2024/11/22 23:05:51 by joyim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-static char *malloc_substr(char const *s, int start, int len);
-static int subs_len(char const *s, char c);
-char **split(char const *s, char c);
+static char		*malloc_substr(char const *s, int start, int len);
+static int		subs_len(char const *s, char c);
+char			**split(char const *s, char c);
+void			process_input(char *input, t_stack_node **a);
 
-static int subs_len(char const *s, char c)
+static int	subs_len(char const *s, char c)
 {
-	int i;
-	int next;
+	int		i;
+	int		next;
 
 	i = 0;
 	next = 0;
@@ -25,12 +38,12 @@ static int subs_len(char const *s, char c)
 	return (i);
 }
 
-char **split(char const *s, char c)
+char	**split(char const *s, char c)
 {
-	size_t i;
-	size_t j;
-	int n;
-	char **array;
+	size_t		i;
+	size_t		j;
+	int			n;
+	char		**array;
 
 	array = malloc(sizeof(char *) * (subs_len(s, c) + 1));
 	if (!array)
@@ -53,10 +66,10 @@ char **split(char const *s, char c)
 	return (array);
 }
 
-static char *malloc_substr(char const *s, int start, int len)
+static char	*malloc_substr(char const *s, int start, int len)
 {
-	char *substr;
-	int i;
+	char	*substr;
+	int		i;
 
 	i = 0;
 	substr = malloc((len - start + 1) * sizeof(char));
@@ -66,4 +79,22 @@ static char *malloc_substr(char const *s, int start, int len)
 		substr[i++] = s[start++];
 	substr[i] = '\0';
 	return (substr);
+}
+
+void	process_input(char *input, t_stack_node **a)
+{
+	char	**av;
+	int		i;
+
+	av = split(input, ' ');
+	if (!av)
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
+	init_stack_a(a, av);
+	i = 0;
+	while (av[i])
+		free(av[i++]);
+	free(av);
 }

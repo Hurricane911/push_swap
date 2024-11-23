@@ -1,40 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/22 23:02:51 by joyim             #+#    #+#             */
+/*   Updated: 2024/11/23 11:56:20 by joyim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_stack_node *a;
-    t_stack_node *b;
-    int i;
+	t_stack_node		*a;
+	t_stack_node		*b;
 
-    a = NULL;
-    b = NULL;
-    i = 0;
-    if (ac > 1 && (av[1][0] == ' ' || av[1][0] == '\0'))
-    {
-        write(2, "Error\n", 6);
-        return (1);
-    }
-    if (ac == 1 || (ac == 2 && !av[1][0]))
-        return (1);
-    else if (ac == 2)
-    {
-        av = split(av[1], ' ');
-        init_stack_a(&a, av);
-        while (av[i])
-            free(av[i++]);
-        free(av);
-    }
-    else
-        init_stack_a(&a, av + 1);
-    if (!stack_sorted(a))
-    {
-        if (stack_len(a) == 2)
-            sa(&a, false);
-        else if (stack_len(a) == 3)
-            sort_three(&a);
-        else
-            sort_stacks(&a, &b);
-    }
-    free_stack(&a);
-    return (0);
+	a = NULL;
+	b = NULL;
+	if (ac > 1 && (av[1][0] == ' ' || av[1][0] == '\0'))
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
+	if (ac == 1 || (ac == 2 && !av[1][0]))
+		return (1);
+	else if (ac == 2)
+		process_input(av[1], &a);
+	else
+		init_stack_a(&a, av + 1);
+	sort_valid(&a, &b);
+	free_stack(&a);
+	return (0);
 }

@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_b_to_a.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/22 23:01:39 by joyim             #+#    #+#             */
+/*   Updated: 2024/11/22 23:01:39 by joyim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-static void set_target_b(t_stack_node *a, t_stack_node *b)
+static void	set_target_b(t_stack_node *a, t_stack_node *b)
 {
-	t_stack_node *current_a;
-	t_stack_node *target_node;
-	long best_match_index;
+	t_stack_node	*current_a;
+	t_stack_node	*target_node;
+	long			best_match_index;
 
 	while (b)
 	{
@@ -27,7 +39,7 @@ static void set_target_b(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void init_nodes_b(t_stack_node *a, t_stack_node *b)
+void	init_nodes_b(t_stack_node *a, t_stack_node *b)
 {
 	current_index(a);
 	current_index(b);

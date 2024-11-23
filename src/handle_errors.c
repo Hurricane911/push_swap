@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_errors.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/22 22:55:44 by joyim             #+#    #+#             */
+/*   Updated: 2024/11/22 22:55:44 by joyim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-int error_syntax(char *str_n)
+int	error_syntax(char *str_n)
 {
 	if (!(*str_n == '+' || *str_n == '-' || (*str_n >= '0' && *str_n <= '9')))
 		return (1);
-	if ((*str_n == '+' || *str_n == '-') && !(str_n[1] >= '0' && str_n[1] <= '9'))
+	if ((*str_n == '+' || *str_n == '-')
+		&& !(str_n[1] >= '0' && str_n[1] <= '9'))
 		return (1);
 	while (*++str_n)
 	{
@@ -14,7 +27,7 @@ int error_syntax(char *str_n)
 	return (0);
 }
 
-int error_duplicate(t_stack_node *a, int n)
+int	error_duplicate(t_stack_node *a, int n)
 {
 	if (!a)
 		return (0);
@@ -27,13 +40,13 @@ int error_duplicate(t_stack_node *a, int n)
 	return (0);
 }
 
-void free_stack(t_stack_node **stack)
+void	free_stack(t_stack_node **stack)
 {
-	t_stack_node *tmp;
-	t_stack_node *current;
+	t_stack_node	*tmp;
+	t_stack_node	*current;
 
 	if (!stack)
-		return;
+		return ;
 	current = *stack;
 	while (current)
 	{
@@ -45,7 +58,7 @@ void free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-void free_errors(t_stack_node **a)
+void	free_errors(t_stack_node **a)
 {
 	free_stack(a);
 	write(2, "Error\n", 6);

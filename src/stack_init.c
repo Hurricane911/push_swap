@@ -1,15 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 00:36:12 by joyim             #+#    #+#             */
+/*   Updated: 2024/11/23 00:36:12 by joyim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-static long ft_atol(const char *str)
+static long	ft_atol(const char *str)
 {
-	int i;
-	int sign;
-	long result;
+	int		i;
+	int		sign;
+	long	result;
 
 	result = 0;
 	sign = 1;
 	i = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -25,19 +38,18 @@ static long ft_atol(const char *str)
 	return (result * sign);
 }
 
-static void append_node(t_stack_node **stack, int n)
+static void	append_node(t_stack_node **stack, int n)
 {
-	t_stack_node *node;
-	t_stack_node *last_node;
+	t_stack_node	*node;
+	t_stack_node	*last_node;
 
 	if (!stack)
-		return;
+		return ;
 	node = malloc(sizeof(t_stack_node));
 	if (!node)
-		return;
+		return ;
 	node->next = NULL;
 	node->nbr = n;
-
 	if (!(*stack))
 	{
 		*stack = node;
@@ -51,10 +63,10 @@ static void append_node(t_stack_node **stack, int n)
 	}
 }
 
-void init_stack_a(t_stack_node **a, char **av)
+void	init_stack_a(t_stack_node **a, char **av)
 {
-	long n;
-	int i;
+	long	n;
+	int		i;
 
 	i = 0;
 	while (av[i])
@@ -71,7 +83,7 @@ void init_stack_a(t_stack_node **a, char **av)
 	}
 }
 
-t_stack_node *get_cheapest(t_stack_node *stack)
+t_stack_node	*get_cheapest(t_stack_node *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -84,7 +96,8 @@ t_stack_node *get_cheapest(t_stack_node *stack)
 	return (NULL);
 }
 
-void prep_for_push(t_stack_node **stack, t_stack_node *top_node, char stack_name)
+void	prep_for_push(t_stack_node **stack,
+				t_stack_node *top_node, char stack_name)
 {
 	while (*stack != top_node)
 	{
